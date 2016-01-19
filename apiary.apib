@@ -1,0 +1,1096 @@
+FORMAT: 1A
+HOST: http://strands.facturacionelectronica.eu/api/v1/
+
+# HazteUnaFacturae API
+
+# Consideraciones generales
+
+Esta documentación detalla las diferentes funciones que ofrece el JSON RESTful API de **HazteUnaFacturae**. 
+
+## Autorización
+
+Todas las peticiones al API requieren autorización. Dicha autenticación se realiza por medio de una cabecera HTTP llamada `Authorization` que tendrá el valor `Basic API_KEY` (tendrás que sustituir API_KEY por el valor real de tu clave).
+
+## Formatos
+
+La respuesta es siempre en formato JSON. 
+
+## Puntos básicos
+
++ **HTTPS**: Todas las peticiones se realizan sobre HTTPS.
++ **UTF-8 encoding**: Todas las cadenas se enviarán y recibirán en UTF-8.
++ **ISO Date format**: Los formatos de tipo Date y DateTime seguirán el formato ISO 8601:
+    + Date: `2013-07-18`
+    + DateTime: `2013-07-18T19:30:06.445Z`
+
+## Métodos HTTP
+
+Las peticiones siguen, en la medida de los posible, las directrices de un API REST. Esto significa que cada servicio soportará uno o más de los siguientes métodos HTTP:
+
++ `GET`. Recupera información sobre un recurso.
++ `POST`. Crea un recurso.
++ `PUT`. Actualiza un recurso.
++ `DELETE`. Elimina un recurso.
+
+En esta documentación se enumeran a continuación qué métodos soportan los diferentes recursos de la plataforma.
+
+## Códigos de Respuesta
+
+El presente API utiliza los códigos de error estándar de HTTP para indicar que la ejecución de una petición ha sido errónea:
+
+| Código | Descripción |
+|--------|-------------|
+| 200  | OK. |
+| 201  | Creado. |
+| 400  | Petición inválida. |
+| 401  | No autorizado. Se ha enviado un token erróneo o el usuario identificado no puede ejecutar la acción. |
+| 404  | No encontrado. |
+| 500  | Error interno. Se ha producido un error en la ejecución de la acción solicitada |
+
+Adicionalmente, en el cuerpo de la respuesta se incluye siempre un objeto de error que lo describe más en detalle.
+
+
+# Group Servicios
+
+## Organization [/organizations]
+
+Representa una entidad fiscal, ya se trate de una persona jurídica (empresa) o física (autónomo).
+
++ Attributes (BaseOrganization)
+
+### Recuperar empresa [GET /organizations/{id}]
+
+Recupera la empresa asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseOrganizationResponse)
+
+### Listar empresas [GET]
+
+Recupera el listado de empresas existentes en el sistema.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseOrganizationArrayResponse)
+
+### Crear empresa [POST]
+
+Registra una nueva empresa en el sistema
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Organization)
+
++ Response 201 (application/json)
+
+        {"data":
+        {
+        "id": "356"
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Actualizar empresa [PUT /organizations/{id}]
+
+Actualiza una empresa existente en el sistema
++ Parameters
+    + id (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Organization)
+
++ Response 200 (application/json)
+
+        {
+        "error_code": "",
+        "error_message": ""}
+
+
+### Eliminar empresa [DELETE /organizations/{id}]
+
+Elimina la empresa asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+  
+        {
+        "error_code": "",
+        "error_message": ""}
+
+
+## Organization Configuration [/organizations/{id}/configuration]
+
+Define la configuración estándar para el funcionamiento de una empresa. Cuando se crean nuevos clientes asociados a la empresa, se les asigna esta misma configuración por defecto, pudiendo luego configurarla de manera individual por cada uno de ellos.
+
++ Attributes (OrganizationConfiguration)
+    
+### Recuperar configuración [GET]
+
+Recupera la configuración de la empresa asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (OrganizationConfigurationResponse)
+
+
+### Actualizar configuración [PUT]
+
+Actualiza la configuración por defecto para la empresa especificada
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Organization Configuration)
+
++ Response 200 (application/json)
+   
+        {
+        "error_code": "",
+        "error_message": ""}
+        
+        
+        
+## Customer [/organizations/{orgId}/customers]
+
+Representa un cliente de la empresa identificada por el ID especificado.
+
++ Attributes (BaseCustomer)
+
+### Recuperar cliente [GET /organizations/{orgId}/customers/{id}]
+
+Recupera el cliente asociado al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del cliente
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseCustomerResponse)
+
+### Listar clientes [GET /organizations/{orgId}/customers/{?customer_name,customer_tax_number,sort_by,order,page,page_size}]
+
+Recupera los clientes de la empresa.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + customer_name (string, optional) - nombre de cliente
+    + customer_tax_number (string, optional) - nif de clienteados
+    + sort_by (array[string], optional) - array de campos de ordenación
+    + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
+    + page (number, optional) - número de página
+    + page_size (number, optional) - cantidad de elementos por página
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+ 
++ Response 200 (application/json)
+
+       + Attributes (BaseCustomerArrayResponse)
+        
+
+
+### Top clientes [GET /organizations/{orgId}/customers/top/{?sort_by,order,number}]
+
+Recupera una lista con un número limitado de clientes 'top' ordenados por un determinado criterio.
+
++ Parameters
+    + sort_by (array[string], required) - array de campos de ordenación
+    + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
+    + number (number, optional) - número de clientes del ranking
+    
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+ 
++ Response 200 (application/json)
+
+       + Attributes (BaseCustomerArrayResponse)
+        
+
+### Crear cliente [POST]
+
+Registra un nuevo cliente asociado a la empresa
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Customer)
+
++ Response 201 (application/json)
+
+        { "data":
+        {
+            "id": "665"
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+
+### Actualizar cliente [PUT /organizations/{orgId}/customers/{id}]
+
+Actualiza un cliente
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del cliente
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Customer)
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+### Eliminar cliente [DELETE /organizations/{orgId}/customers/{id}]
+
+Elimina el cliente asociado al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del cliente
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+## Customer Configuration [/organizations/{orgId}/customers/{cusId}/configuration]
+
+Define la configuración específica para un cliente.
+
++ Attributes (CustomerConfiguration)
+
+### Recuperar configuración [GET]
+
+Recupera la configuración del cliente asociado al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + cusId (number) - identificador interno del cliente
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (CustomerConfigurationResponse)
+
+
+### Actualizar configuración [PUT]
+
+Actualiza la configuración para el cliente especificado
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + cusId (number) - identificador interno del cliente
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (CustomerConfiguration)
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+
+## Draft [/organizations/{orgId}/drafts]
+
+Representa una factura en borrador.
+
++ Attributes (BaseInvoice)
+    + id (number) - identificador interno
+
+### Recuperar borrador [GET /organizations/{orgId}/drafts/{id}]
+
+Recupera el borrador asociado al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del borrador de factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseDraftResponse)
+
+### Listar facturas en borrador [GET]
+
+Recupera las facturas en borrador de la empresa.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+   
+       + Attributes (BaseDraftArrayResponse)
+
+### Crear borrador [POST]
+
+Crea un nuevo borrador de factura asociado a la empresa. El borrador se crea "vacío", tan solo debe indicarse el cliente al que se dirige, para en función de éste contruir la factura en el formato adecuado aplicando su configuración.
+Para introducir el resto de datos de la factura puede utilizarse el método PUT y los métodos a nivel de líneas de factura.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes
+        + cusId (number) - identificador del cliente al que se emitiría la factura
+
++ Response 201 (application/json)
+
+        { "data":
+        {
+            "id": "665"
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Actualizar borrador [PUT /organizations/{orgId}/drafts/{id}]
+
+Actualiza un borrador de factura
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del borrador de factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (Draft)
+
++ Response 200 (application/json)
+    + Attributes (BaseDraftResponse)
+
+### Eliminar borrador [DELETE /organizations/{orgId}/drafts/{id}]
+
+Elimina el borrador de factura asociado al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del borrador
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+        
+        {"error_code": "",
+        "error_message": ""}
+
+### Enviar borrador [GET /organizations/{orgId}/drafts/{id}/send]
+
+Envía un borrador de factura. El borrador (Draft) desaparece y da lugar a una factura (Invoice).
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador del borrador a enviar
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseInvoiceResponse)
+
+
+## Draft Attachment [/organizations/{orgId}/drafts/{id}/attachments]
+
+Representa un fichero adjunto.
+
++ Attributes (Attachment) 
+
+### Listar adjuntos de borrador [GET /organizations/{orgId}/drafts/{id}/attachments]
+
+Recupera un array con los identificadores de los ficheros adjuntos.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del borrador
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (AttachmentsArrayResponse)
+
+### Recuperar adjunto [GET /organizations/{orgId}/drafts/{draftId}/attachments/{id}]
+
+Recupera un fichero adjunto.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del borrador
+    + id (number) - identificador interno del adjunto
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (AttachmentResponse)
+
+
+### Subir adjunto [POST /organizations/{orgId}/drafts/{id}/attachments]
+
+Permite subir un fichero adjunto a una factura en borrador.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno del borrador
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (AttachmentToUpload)
+
++ Response 200 (application/json)
+    
+        { "error_code": "",
+        "error_message": ""}
+
+
+### Eliminar adjunto [DELETE /organizations/{orgId}/drafts/{draftId}/attachments/{id}]
+
+Permite eliminar un fichero adjunto de una factura en borrador.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del borrador
+    + id (number) - identificador interno del adjunto
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+
++ Response 200 (application/json)
+    
+        { "error_code": "",
+        "error_message": ""}
+
+
+## Draft Item [/organizations/{orgId}/drafts/{draftId}/items]
+
+Define las líneas de una factura en borrador.
+
++ Attributes (BaseItem)
+
+### Crear línea de borrador [POST]
+
+Crea una nueva línea dentro de un borrador de factura.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del borrador
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseItem)
+
++ Response 201 (application/json)
+
+    + Attributes (BaseItemResponse)
+
+### Recuperar líneas [GET]
+
+Recupera las líneas de una factura en borrador.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del borrador
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+ + Attributes (BaseItemArrayResponse)
+       
+### Recuperar línea [GET /organizations/{orgId}/drafts/{draftId}/items/{id}]
+
+Recupera la información de una línea de un borrador
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del cliente
+    + id (number) - identificador interno de la línea
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
++ Response 200 (application/json)
+    + Attributes (BaseItemResponse)
+
+### Actualizar línea [PUT /organizations/{orgId}/drafts/{draftId}/items/{id}]
+
+Actualiza la línea especificada de un borrador
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del cliente
+    + id (number) - identificador interno de la línea
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseItem)
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+
+
+### Eliminar línea [DELETE /organizations/{orgId}/drafts/{draftId}/items/{id}]
+
+Elimina una línea de un borrador de factura.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + draftId (number) - identificador interno del cliente
+    + id (number) - identificador interno de la línea
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+ 
+        { "error_code": "",
+        "error_message": ""}
+
+## Invoice [/organizations/{orgId}/invoices]
+
+Representa una factura emitida.
+
++ Attributes (BaseInvoice)
+    + id (number) - identificador interno
+    + delivery_code (string) - código de registro asignado por el canal de envío
+    + history (array[InvoiceHistory]) - historial de la factura
+
+### Recuperar factura [GET /organizations/{orgId}/invoices/{id}]
+
+Recupera la factura asociada al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseInvoiceResponse)
+
+### Listar facturas [GET  /organizations/{orgId}/invoices/{id}/{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,sort_by,order,page,page_size}]
+
+Recupera las facturas emitidas por la empresa.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + invoice_number (string, optional) - número de factura
+    + series (string, optional) - número de serie
+    + date_from (string, optional ) - fecha de factura desde
+    + date_to (string, optional) - fecha de factura hasta
+    + customer_id (number, optional) - identificador de cliente
+    + customer_name (string, optional) - nombre de cliente
+    + customer_tax_number (string, optional) - nif de cliente
+    + item_description (string, optional) - descripción de línea
+    + payment_date (string, optional) - fecha de pago
+    + status (array[string], optional) - array de estados
+    + sort_by (array[string], optional) - array de campos de ordenación
+    + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
+    + page (number, optional) - número de página
+    + page_size (number, optional) - cantidad de elementos por página
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+    + Attributes (BaseInvoiceArrayResponse)
+
+### Actualizar estado de factura [PUT /organizations/{orgId}/invoices/{id}]
+
+Actualiza el estado de una factura
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes
+        + state (string) - nuevo estado de la factura
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+
+### Eliminar factura [DELETE /organizations/{orgId}/invoices/{id}]
+
+Elimina le factura asociada al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+
+### Recuperar original [GET /organizations/{orgId}/invoices/{id}/original]
+
+Recupera el fichero original de la factura asociada al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes
+        + original (string) - original de la factura condificado en Base64
+        
+### Recuperar vista PDF [GET /organizations/{orgId}/invoices/{id}/pdf]
+
+Recupera la vista en PDF de la factura asociada al ID especificado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes
+        + pdf (string) - vista pdf condificada en Base64
+
+    
+## Invoice Attachment [/organizations/{orgId}/invoices/{id}/attachments]
+
+Representa un fichero adjunto.
+
++ Attributes (Attachment) 
+
+### Listar adjuntos [GET /organizations/{orgId}/invoices/{id}/attachments]
+
+Recupera un array con los identificadores de los ficheros adjuntos.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (AttachmentsArrayResponse)
+
+### Recuperar adjunto [GET /organizations/{orgId}/invoices/{invoiceId}/attachments/{id}]
+
+Recupera un fichero adjunto.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + invoiceId (number) - identificador interno de la factura
+    + id (number) - identificador interno del adjunto
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (AttachmentResponse)
+
+    
+# Data Structures
+
+## AttachmentResponse (object)
+
++ data (Attachment) - contiene un objeto attachment
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+
+## AttachmentsArrayResponse (object)
+
++ data (AttachmentsArray) - contiene un array de objetos Attachment (sin content)
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## AttachmentsArray (object)
+
++ attachments (array[BaseAttachment]) - array de adjuntos (sin content)
+
+## OrganizationConfigurationResponse (object)
+
++ data (OrganizationConfiguration) - configuración base
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## OrganizationConfiguration (object)
++ currency (string, required) - código alpha de moneda
++ language (string, required) - código de idioma
++ invoice_format (string, required) - formato de factura por defecto
++ channel (string, required) - canal de envío de las facturas por defecto
++ bank_account (string, optional) - cuenta de cobro de las facturas por defecto
++ payment_deadline (number, optional) - periodo de cobro de las facturas por defecto
++ pdf_template (string, optional) - plantilla PDF a utilizar para las facturas
++ primary_color (string, optional) - color principal para la visualización en PDF (formato html)
++ secondary_color (string, optional) - color secundario para la visualización en PDF (formato html)
++ signature_delegated (boolean, required) - indica si la firma de la factura se delega en la plataforma
+
+## CustomerConfigurationResponse (object)
+
++ data (CustomerConfiguration) - configuración base
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## CustomerConfiguration (object)
++ currency (string, required) - código alpha de moneda
++ language (string, required) - código de idioma
++ invoice_format (string, required) - formato de factura por defecto
++ channel (string, required) - canal de envío de las facturas por defecto
++ bank_account (string, optional) - cuenta de cobro de las facturas por defecto
++ payment_deadline (number, optional) - periodo de cobro de las facturas por defecto
++ pdf_template (string, optional) - plantilla PDF a utilizar para las facturas
+
+
+## BaseOrganizationResponse (object)
+
++ data (BaseOrganization) - contiene un objeto Organization
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseOrganizationArrayResponse (object)
+
++ data (BaseOrganizationArray) - contiene un array de objetos Organization
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseOrganizationArray (object)
+
++ organizations (array[BaseOrganization]) - empresas
+
+## BaseOrganization (object)
++ tax_number (string, required) - número de identificación fiscal
++ name (string, required) - nombre
++ first_surname (string, optional) - primer apellido (para personas físicas)
++ second_surname (string, optional) - segundo apellido (para personas físicas)
++ address (string, required) - dirección postal
++ poblation (string, required) - población
++ province (string, required) - provincia
++ post_code (number, required) - código postal
++ country_code (string, required) - código Alpha3 de país
++ phone (string, optional) - número de teléfono
++ email (string, required) - dirección de correo electrónico
++ id (number) - identificador interno de la empresa
++ web_url (string, optional) - página web
++ logo (string, optional) - URL hacia el logotipo de la empresa
+
+## BaseCustomer (object)
++ tax_number (string, required) - número de identificación fiscal
++ name (string, required) - nombre
++ first_surname (string, optional) - primer apellido (para personas físicas)
++ second_surname (string, optional) - segundo apellido (para personas físicas)
++ address (string, required) - dirección postal
++ poblation (string, required) - población
++ province (string, required) - provincia
++ post_code (number, required) - código postal
++ country_code (string, required) - código Alpha3 de país
++ phone (string, optional) - número de teléfono
++ email (string, required) - dirección de correo electrónico
++ id (number) - identificador interno del cliente
++ contact_person (string, optional) - persona de contacto en el cliente
+    
+
+## BaseCustomerResponse (object)
+
++ data (BaseCustomer) - contiene un objeto Customer
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseCustomerArrayResponse (object)
+
++ data (BaseCustomerArray) - contiene un array de objetos Customer
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseCustomerArray (object)
+
++ customers (array[BaseCustomer]) - clientes
+
+## BaseTax (object)
++ tax_base (number, required) - base imponible
++ tax_rate (number, required) - porcentaje
++ tax_type (string, required) - tipo de impuesto a aplicar
++ tax_amount (number, optional) - importe
+
+## BaseDiscount (object)
++ reason (string, required) - motivo de descuento
++ rate (number, optional) - porcentaje de dcto a aplicar
++ amount (number, required) - importe del dcto a aplicar
+
+## BaseCharge (object)
++ reason (string, required) - motivo de cargo
++ rate (number, optional) - porcentaje de cargo a aplicar
++ amount (number, required) - importe del cargo a aplicar
+
+## BasePayment (object)
++ payment_date (string, required) - fecha del pago
++ payment_method (string, required) - método de pago
++ amount (number, required) - importe del pago
++ bank_account (string, optional) - cuenta de abono/cargo, según corresponda; obligatoria para pagos por recibo o transferencia
+
+## BaseItemResponse (object)
+
++ data (BaseItem) - contiene un objeto Draft Item
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseItemArrayResponse (object)
+
++ data (BaseItemArray) - contiene un array de objetos Draft Item
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseItemArray (object)
+
++ draft_items (array[BaseItem]) - líneas de borrador
+
+## BaseItem (object)
++ order (number, required) - ordinal superior a 0 para identificar el item dentro de la factura (1,2,3...)
++ description (string, required) - concepto a facturar
++ quantity (number, required) - cantidad
++ unit_of_measure (string, optional) - unidad de medida
++ price (number, required) - precio unitario
++ total_cost (number, optional) - importe bruto sin impuestos `dato calculado por el sistema`
++ gross_amount (number, optional) - importe bruto sin impuestos después de aplicar cargos y descuentos `dato calculado por el sistema`
++ comments (string, optional) - observaciones
++ article_code (string, optional) - código de artículo
++ delivery_note_number (string, optional) - número de albarán
++ delivery_note_date (string, optional) - fecha de albarán
++ transaction_date (string, optional) - fecha de operación
++ period_start_date (string, optional) - periodo facturado, fecha de inicio
++ period_end_date (string, optional) - periodo facturado, fecha de fin
++ contract_reference (string, optional) - referencia al contrato
++ transaction_reference (string, optional) - número de pedido
++ file_reference (string, optional) - referencia del expediente
++ taxes (array[BaseTax], optional) - impuestos
++ discounts (array[BaseDiscount], optional) - descuentos
++ charges (array[BaseCharge], optional) - cargos
+
+## InvoiceHistory
++ date (string, required) - fecha en que se produjo el evento
++ action (string, required) - acción realizada sobre la factura
++ initial_state (string, required) - estado inicial de la factura, antes de la acción
++ end_state (string, required) - estado final de la factura después de la acción
++ user (string, optional) - usuario, empresa o sistema autor de la acción
++ message (string, optional) - mensaje de rechazo, error o detalle de la acción realizada
++ ip (string, optional) - ip desde la que se ejecuta la acción
++ browser (string, optional) - navegador desde el que se ejecuta la acción
++ user_agent (string, optional) - cabecera user-agent del dispositivo desde el que se ejecuta la acción
+
+## BaseDraftResponse (object)
+
++ data (BaseInvoice) - contiene un objeto Draft
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseDraftArrayResponse (object)
+
++ data (BaseDraftArray) - contiene un array de objetos Draft
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseDraftArray (object)
+
++ drafts (array[BaseInvoice]) - borradores
+
+## BaseInvoiceResponse (object)
+
++ data (BaseInvoice) - contiene un objeto Invoice
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseInvoiceArrayResponse (object)
+
++ data (BaseInvoiceArray) - contiene un array de objetos Invoice
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseInvoiceArray (object)
+
++ invoices (array[BaseInvoice]) - facturas
+
+## BaseInvoice (object)
++ number (string, required) - número de factura
++ series (string, optional) - número de serie
++ date (string, required) - fecha de factura
++ state (string, required) - código de estado
++ total_cost (number, required) - importe bruto sin impuestos `dato calculado por el sistema`
++ gross_amount (number, required) - importe bruto sin impuestos después de aplicar cargos y descuentos `dato calculado por el sistema`
++ total_to_pay (number, required) - total a pagar `dato calculado por el sistema`
++ currency (string, required) - moneda
++ comments (string, optional) - observaciones
++ sender (BaseOrganization, optional) - emisor de la factura
++ receiver (BaseOrganization, optional) - receptor de la factura
++ items (array[BaseItem]) - líneas de factura
++ payments (array[BasePayment]) - vencimientos
++ taxes (array[BaseTax]) - impuestos
++ discounts (array[BaseDiscount]) - descuentos
++ charges (array[BaseCharge]) - cargos
++ exchange_rate (number, optional) - tipo de cambio
++ invoice_type (string, required) - tipo de factura original o rectificativa (valores OO y OR respectivamente)
++ corrective_inv_number (number, optional) - número de factura rectificada
++ corrective_inv_series (string, optional) - serie de factura rectificada
++ corrective_reason_code (string, optional) - motivo de rectificación
++ corrective_reason_method (string, optional) - criterio de rectificación
+
+## InvoiceCriteria
++ invoice_number (string, optional) - número de factura
++ series (string, optional) - número de serie
++ date_from (string, optional ) - fecha de factura desde
++ date_to (string, optional) - fecha de factura hasta
++ customer_id (number, optional) - identificador de cliente
++ customer_name (string, optional) - nombre de cliente
++ customer_tax_number (string, optional) - nif de cliente
++ item_description (string, optional) - descripción de línea
++ payment_date (string, optional) - fecha de pago
++ status (array[string], optional) - array de estados
++ sort_by (array[string], optional) - array de campos de ordenación
++ order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
++ page (number, optional) - número de página
++ page_size (number, optional) - cantidad de elementos por página
+
+## CustomerCriteria
++ customer_id (number, optional) - identificador de cliente
++ customer_name (string, optional) - nombre de cliente
++ customer_tax_number (string, optional) - nif de clienteados
++ sort_by (array[string], optional) - array de campos de ordenación
++ order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
++ page (number, optional) - número de página
++ page_size (number, optional) - cantidad de elementos por página
+
+## Attachment
++ content (string) - contenido del fichero adjunto condificado en Base64
++ name (string) - nombre del fichero (ej. fotocopia.pdf)
++ mime (string) - mime del fichero (ej. application/pdf)
++ id (number, required) - identificador del adjunto
+
+## AttachmentToUpload
++ content (string) - contenido del fichero adjunto condificado en Base64
++ name (string) - nombre del fichero (ej. fotocopia.pdf)
++ mime (string) - mime del fichero (ej. application/pdf)
+
+## BaseAttachment
++ name (string) - nombre del fichero (ej. fotocopia.pdf)
++ mime (string) - mime del fichero (ej. application/pdf)
++ id (number, required) - identificador del adjunto
+
