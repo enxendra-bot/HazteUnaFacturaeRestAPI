@@ -808,7 +808,43 @@ Recupera un fichero adjunto.
 + Response 200 (application/json)
     + Attributes (AttachmentResponse)
 
-    
+### Aceptar factura [PUT /organizations/{orgId}/invoices/{id}/accept]
+
+Marca una factura como aceptada por el receptor de la misma.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+### Rechazar factura [PUT /organizations/{orgId}/invoices/{id}/reject]
+
+Marca una factura como rechazada por el cliente.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes
+        + reason (string) - motivos de rechazo
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
 # Data Structures
 
 ## AttachmentResponse (object)
@@ -845,6 +881,7 @@ Recupera un fichero adjunto.
 + primary_color (string, optional) - color principal para la visualización en PDF (formato html)
 + secondary_color (string, optional) - color secundario para la visualización en PDF (formato html)
 + signature_delegated (boolean, required) - indica si la firma de la factura se delega en la plataforma
++ footer_texts (string, optional) - textos que se mostrarán por defecto en el pie de todas las facturas
 
 ## CustomerConfigurationResponse (object)
 
