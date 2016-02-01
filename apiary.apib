@@ -715,6 +715,35 @@ Recupera las facturas emitidas por la empresa.
 + Response 200 (application/json)
 
     + Attributes (BaseInvoiceArrayResponse)
+    
+### Exportar facturas [GET  /organizations/{orgId}/invoices/export{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,sort_by,order,export_format}]
+
+Exporta los resultados de una búsqueda de facturas. Los formatos de exportación disponibles son: CSV, PDF, XLS, XLSX, DOCX, RTF, ODT, ODS.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + invoice_number (string, optional) - número de factura
+    + series (string, optional) - número de serie
+    + date_from (string, optional ) - fecha de factura desde
+    + date_to (string, optional) - fecha de factura hasta
+    + customer_id (number, optional) - identificador de cliente
+    + customer_name (string, optional) - nombre de cliente
+    + customer_tax_number (string, optional) - nif de cliente
+    + item_description (string, optional) - descripción de línea
+    + payment_date (string, optional) - fecha de pago
+    + status (array[string], optional) - array de estados
+    + sort_by (array[string], optional) - array de campos de ordenación
+    + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
+    + export_format (string, required) - formato de exportación
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes
+       + export (string) - fichero con el resultado de la exportación condificado en Base64
 
 ### Actualizar estado de factura [PUT /organizations/{orgId}/invoices/{id}]
 
