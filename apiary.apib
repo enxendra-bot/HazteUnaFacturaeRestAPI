@@ -517,11 +517,18 @@ Valida si el borrador dispone de toda la información necesaria para poder envia
 
 + Response 200 (application/json)
 
-        {"is_valid": "",
-        "invoice_errors": "",
+        {"data":
+        {
+            "invoice_errors":
+            {
+                "invoice.issueDate": "Fecha de emisión: Obligatorio"
+            },
+            "is_valid": "false"
+        },
         "error_code": "",
-        "error_message": ""}
-    
+        "error_message": "" }
+
+
 
 ## Draft Attachment [/organizations/{orgId}/drafts/{id}/attachments]
 
