@@ -428,7 +428,7 @@ Actualiza un borrador de factura
 
             Authorization: Basic API_KEY
             
-    + Attributes (Draft)
+    + Attributes (DraftUpdatable)
 
 + Response 200 (application/json)
     + Attributes (BaseDraftResponse)
@@ -667,7 +667,7 @@ Recupera la factura asociada al ID especificado.
 + Response 200 (application/json)
     + Attributes (BaseInvoiceResponse)
 
-### Listar facturas [GET  /organizations/{orgId}/invoices/{id}/{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,sort_by,order,page,page_size}]
+### Listar facturas [GET  /organizations/{orgId}/invoices/{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,sort_by,order,page,page_size}]
 
 Recupera las facturas emitidas por la empresa.
 
@@ -1130,4 +1130,19 @@ Marca una factura como rechazada por el cliente.
 + name (string) - nombre del fichero (ej. fotocopia.pdf)
 + mime (string) - mime del fichero (ej. application/pdf)
 + id (number, required) - identificador del adjunto
+
+## DraftUpdatable (object)
++ number (string, required) - número de factura
++ series (string, optional) - número de serie
++ date (string, required) - fecha de factura
++ comments (string, optional) - observaciones
++ payments (array[BasePayment]) - vencimientos
++ discounts (array[BaseDiscount]) - descuentos
++ charges (array[BaseCharge]) - cargos
++ exchange_rate (number, optional) - tipo de cambio
++ invoice_type (string, required) - tipo de factura original o rectificativa (valores OO y OR respectivamente)
++ corrective_inv_number (number, optional) - número de factura rectificada
++ corrective_inv_series (string, optional) - serie de factura rectificada
++ corrective_reason_code (string, optional) - motivo de rectificación
++ corrective_reason_method (string, optional) - criterio de rectificación
 
