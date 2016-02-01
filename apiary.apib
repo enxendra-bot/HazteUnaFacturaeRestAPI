@@ -769,7 +769,42 @@ Recupera la vista en PDF de la factura asociada al ID especificado.
     + Attributes
         + pdf (string) - vista pdf condificada en Base64
 
-    
+    ### Aceptar factura [PUT /organizations/{orgId}/invoices/{id}/accept]
+
+Marca una factura como aceptada por el receptor de la misma.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
+
+### Rechazar factura [PUT /organizations/{orgId}/invoices/{id}/reject]
+
+Marca una factura como rechazada por el cliente.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes
+        + reason (string) - motivos de rechazo
+
++ Response 200 (application/json)
+
+        { "error_code": "",
+        "error_message": ""}
 ## Invoice Attachment [/organizations/{orgId}/invoices/{id}/attachments]
 
 Representa un fichero adjunto.
@@ -808,42 +843,7 @@ Recupera un fichero adjunto.
 + Response 200 (application/json)
     + Attributes (AttachmentResponse)
 
-### Aceptar factura [PUT /organizations/{orgId}/invoices/{id}/accept]
 
-Marca una factura como aceptada por el receptor de la misma.
-+ Parameters
-    + orgId (number) - identificador interno de la empresa
-    + id (number) - identificador interno de la factura
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: Basic API_KEY
-
-+ Response 200 (application/json)
-
-        { "error_code": "",
-        "error_message": ""}
-
-### Rechazar factura [PUT /organizations/{orgId}/invoices/{id}/reject]
-
-Marca una factura como rechazada por el cliente.
-+ Parameters
-    + orgId (number) - identificador interno de la empresa
-    + id (number) - identificador interno de la factura
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: Basic API_KEY
-            
-    + Attributes
-        + reason (string) - motivos de rechazo
-
-+ Response 200 (application/json)
-
-        { "error_code": "",
-        "error_message": ""}
 
 # Data Structures
 
