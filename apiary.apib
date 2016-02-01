@@ -501,6 +501,26 @@ Previsualiza en formato PDF el borrador de una factura.
 + Response 200 (application/json)
     + Attributes
        + preview (string) - previsualización del borrador condificado en Base64
+       
+### Validar borrador [GET /organizations/{orgId}/drafts/{id}/validate]
+
+Valida si el borrador dispone de toda la información necesaria para poder enviarse.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador del borrador a validar
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        {"is_valid": "",
+        "invoice_errors": "",
+        "error_code": "",
+        "error_message": ""}
     
 
 ## Draft Attachment [/organizations/{orgId}/drafts/{id}/attachments]
