@@ -226,7 +226,26 @@ Recupera los clientes de la empresa.
 
        + Attributes (BaseCustomerArrayResponse)
         
+### Exportar clientes [GET /organizations/{orgId}/customers/export{?customer_name,customer_tax_number,sort_by,order,export_format}]
 
+Exporta los resultados de una búsqueda de clientes. Los formatos de exportación disponibles son: CSV, PDF, XLS, XLSX, DOCX, RTF, ODT, ODS.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + customer_name (string, optional) - nombre de cliente
+    + customer_tax_number (string, optional) - nif de clienteados
+    + sort_by (array[string], optional) - array de campos de ordenación
+    + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
+    + export_format (string, required) - formato de exportación
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+ 
++ Response 200 (application/json)
+    + Attributes
+       + export (string) - fichero con el resultado de la exportación condificado en Base64
 
 ### Top clientes [GET /organizations/{orgId}/customers/top/{?sort_by,order,number}]
 
@@ -769,7 +788,7 @@ Recupera la vista en PDF de la factura asociada al ID especificado.
     + Attributes
         + pdf (string) - vista pdf condificada en Base64
 
-    ### Aceptar factura [PUT /organizations/{orgId}/invoices/{id}/accept]
+### Aceptar factura [PUT /organizations/{orgId}/invoices/{id}/accept]
 
 Marca una factura como aceptada por el receptor de la misma.
 + Parameters
