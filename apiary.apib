@@ -485,6 +485,23 @@ Envía un borrador de factura. El borrador (Draft) desaparece y da lugar a una f
 + Response 200 (application/json)
     + Attributes (BaseInvoiceResponse)
 
+### Previsualizar borrador [GET /organizations/{orgId}/drafts/{id}/preview]
+
+Previsualiza en formato PDF el borrador de una factura.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador del borrador a previsualizar
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes
+       + preview (string) - previsualización del borrador condificado en Base64
+    
 
 ## Draft Attachment [/organizations/{orgId}/drafts/{id}/attachments]
 
