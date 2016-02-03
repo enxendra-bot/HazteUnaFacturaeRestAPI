@@ -47,7 +47,52 @@ El presente API utiliza los códigos de error estándar de HTTP para indicar que
 | 404  | No encontrado. |
 | 500  | Error interno. Se ha producido un error en la ejecución de la acción solicitada |
 
-Adicionalmente, en el cuerpo de la respuesta se incluye siempre un objeto de error que lo describe más en detalle.
+Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 201, se incluye siempre un código de error y un mensaje de error que describe más en detalle qué ha ocurrido.
+
+## Códigos de error
+
+
+| Excepción | Código de error |
+|--------|-------------|
+| INVALID_FACTURAE_FILE | 100
+| INVALID_FACTURAE_MULTIPLE_INVOICES | 110 
+| INVALID_FACTURAE_SCHEMA | 120
+| INVALID_FACTURAE_SIGNED | 130
+| INVALID_FACTURAE_VERSION | 140
+| INVALID_INVOICE_SENDER | 150
+| PGE_SENT_ERROR | 160
+| INVALID_FORMAT | 170
+| INVALID_APP_CREDENTIALS | 180
+| INVALID_INVOICE_CODE | 190
+| INVALID_APP_RESELLER | 200
+| RESTRICTED_IP | 210
+| INVALID_RECEIVER | 220
+| INVALID_NUMBER_ATTACHMENTS | 230
+| INVALID_ATTACHMENT | 240 
+| INVALID_CSV_FILE_FORMAT | 250
+| INVALID_CSV_FILE | 260
+| SEARCH_NUMBER_RESULTS_EXCEEDED | 270
+| CANCELLATION_ERROR | 280
+| CANCELLATION_NOT_ALLOWED | 290
+| UNEXPECTED_AUTH_ERROR | 300
+| MANDATORY_DATA | 310
+| JSON_BODY_NOT_FOUND | 310
+| USER_BLOCKED | 320
+| USER_INACTIVE | 330
+| USER_INVALID | 340
+| INVALID_REQUEST | 350
+| ENTITY_NOT_FOUND | 360
+| ENTITY_ALREADY_EXISTS | 370
+| CUSTOMER_ALREADY_EXISTS | 380
+| INVALID_ORG | 390
+| INVALID_STATE | 400
+| ORGANIZATION_ALREADY_EXISTS | 380
+| INVALID_ORDER_CRITERIA | 401
+| EXPORT_ERROR | 410
+| INVALID_EXPORT_FORMAT | 420
+| INVALID_DRAFT_STATE | 430
+ 
+ Estos códigos de error van acompañados de un mensaje que explica más en detalle cada caso concreto.
 
 
 # Group Servicios
