@@ -97,6 +97,80 @@ Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 2
 
 # Group Servicios
 
+## Master tables [/tables]
+
+Estos servicios permiten recuperar las tablas maestras de la aplicación.
+
+### Listar Formas de pago [GET /tables/paymentmeans]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+ 
+        { "data":
+        {
+            "payment_means":
+            {
+                "10": "Pagaré No a la Orden",
+                "11": "Cheque",
+                "12": "Reposición",
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Listar Tipos de Impuestos [GET /tables/taxes]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "data":
+        {
+            "taxes":
+            {
+                "10": "IECDPCAC",
+                "11": "IIIMAB",
+                "12": "ICIO",
+                "13": "MVDN",
+                "14": "IMSN",
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Listar Unidades de medida [GET /tables/unitsofmeasure]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+ 
+        { "data":
+        {
+            "units_of_measure":
+            {
+                "10": "Bolsas",
+                "11": "Bombonas",
+                "12": "Botellas",
+                "13": "Botes"
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+
 ## Organization [/organizations]
 
 Representa una entidad fiscal, ya se trate de una persona jurídica (empresa) o física (autónomo).
@@ -751,6 +825,7 @@ Elimina una línea de un borrador de factura.
         { "error_code": "",
         "error_message": ""}
 
+
 ## Invoice [/organizations/{orgId}/invoices]
 
 Representa una factura emitida.
@@ -1282,4 +1357,3 @@ Recupera un fichero adjunto.
 + corrective_inv_series (string, optional) - serie de factura rectificada
 + corrective_reason_code (string, optional) - motivo de rectificación
 + corrective_reason_method (string, optional) - criterio de rectificación
-
