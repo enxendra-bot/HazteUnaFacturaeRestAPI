@@ -169,7 +169,51 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
         "error_code": "",
         "error_message": ""}
 
+### Listar Estados de factura [GET /tables/invoicestates]
 
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "data":
+        {
+            "invoice_states":
+            {
+                "ED": "En edición",
+                "EN": "Enviada",
+                "AB": "Abierta",
+                "AC": "Aceptada",
+                "RC": "Rechazada"
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
+### Listar Canales de envío [GET /tables/deliverymethods]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "data":
+        {
+            "delivery_methods":
+            {
+                "PLATFORM": "Generada en plataforma",
+                "MAIL": "Correo electrónico con adjunto",
+                "FTP": "Envío a través de FTP",
+                "AOC": "Envío a través de AOC",
+                "FACe": "Envío a través de FACe",
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
 
 ## Organization [/organizations]
 
