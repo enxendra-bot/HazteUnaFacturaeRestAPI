@@ -439,6 +439,98 @@ Elimina la serie asociada al ID especificado.
         "error_message": ""}
 
       
+      
+## User [/users]
+
+Permiten la gestión de los usuarios de la plataforma.
+
++ Attributes (BaseUser)
+
+### Recuperar usuario [GET /users/{id}]
+
+Recupera el usuario asociado al ID especificado.
++ Parameters
+    + id (number) - identificador interno del usuario
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseUserResponse)
+
+### Listar usuarios [GET]
+
+Recupera el listado de usuarios configurados para la applicación que hace la solicitud.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseUserArrayResponse)
+
+### Crear usuario [POST]
+
+Registra un nuevo usuario.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseUser)
+
++ Response 201 (application/json)
+
+        {"data":
+        {
+        "id": "356"
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Actualizar usuario [PUT /users/{id}]
+
+Actualiza un usuario existente en el sistema
++ Parameters
+    + id (number) - identificador interno del usuario
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseUser)
+
++ Response 200 (application/json)
+
+        {
+        "error_code": "",
+        "error_message": ""}
+
+
+### Eliminar usuario [DELETE /users/{id}]
+
+Elimina el usuario asociado al ID especificado.
++ Parameters
+    + id (number) - identificador interno del usuario
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+  
+        {
+        "error_code": "",
+        "error_message": ""}
+
+      
 ## Customer [/organizations/{orgId}/customers]
 
 Representa un cliente de la empresa identificada por el ID especificado.
@@ -1512,13 +1604,39 @@ Recupera un fichero adjunto.
 + series (array[BaseSerie]) - series
 
 ## BaseSerie (object)
-+ id (number, required) - id
++ id (number, optional) - id
 + code (string, required) - código que se introducirá en el campo serie de la factura
 + name (string, optional) - nombre
 + prefix (string, optional) - prefijo (puedes introducir los cuatro o dos dígitos del año, respectivamente, escribiendo las variables #AAAA# o #AA#)
-+ suffix (string, required) - sufijo (pueden utilizarse las mismas variables que en el caso anterior)
-+ fill_left (number, required) - longitud del número de factura
++ suffix (string, optional) - sufijo (pueden utilizarse las mismas variables que en el caso anterior)
++ fill_left (number, optional) - longitud del número de factura
 + numbering (boolean, required) - determina si habrá numeración automática o no
-+ default_series (boolean, required) -  serie por defecto
-+ reboot_year (boolean, required) - reiniciar automáticamente con el cambio de año
-+ next_number (number, required) - siguiente número
++ default_series (boolean, optional) -  serie por defecto
++ reboot_year (boolean, optional) - reiniciar automáticamente con el cambio de año
++ next_number (number, optional) - siguiente número
+
+
+## BaseUserResponse (object)
+
++ data (BaseUser) - contiene un objeto User
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseUserArrayResponse (object)
+
++ data (BaseUserArray) - contiene un array de objetos User
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseUserArray (object)
+
++ users (array[BaseUser]) - usuarios
+
+## BaseUser (object)
++ id (number, optional) - id
++ login (string, required) - nombre de usuario
++ name (string, required) - nombre
++ surname (number, optional) - apellido
++ email (string, optional) - email
++ nif (string, optional) - nif
++ phone (boolean, optional) - teléfono
