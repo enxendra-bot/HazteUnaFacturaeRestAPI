@@ -345,7 +345,99 @@ Actualiza la configuración por defecto para la empresa especificada
         "error_message": ""}
         
         
-        
+  
+  
+## Serie [/series]
+
+ Permite configurar las series y numeración de las facturas
+
++ Attributes (BaseSerie)
+
+### Recuperar serie [GET /series/{id}]
+
+Recupera la serie asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la serie
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseSerieResponse)
+
+### Listar series [GET]
+
+Recupera el listado de series configuradas para la applicación que hace la solicitud.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+    + Attributes (BaseSerieArrayResponse)
+
+### Crear serie [POST]
+
+Registra una nueva serie en el sistema para la aplicación que hace la solicitud.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseSerie)
+
++ Response 201 (application/json)
+
+        {"data":
+        {
+        "id": "356"
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
+### Actualizar serie [PUT /series/{id}]
+
+Actualiza una serie existente en el sistema
++ Parameters
+    + id (number) - identificador interno de la serie
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            
+    + Attributes (BaseSerie)
+
++ Response 200 (application/json)
+
+        {
+        "error_code": "",
+        "error_message": ""}
+
+
+### Eliminar serie [DELETE /series/{id}]
+
+Elimina la serie asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la serie
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+  
+        {
+        "error_code": "",
+        "error_message": ""}
+
+      
 ## Customer [/organizations/{orgId}/customers]
 
 Representa un cliente de la empresa identificada por el ID especificado.
@@ -1401,3 +1493,32 @@ Recupera un fichero adjunto.
 + corrective_inv_series (string, optional) - serie de factura rectificada
 + corrective_reason_code (string, optional) - motivo de rectificación
 + corrective_reason_method (string, optional) - criterio de rectificación
+
+## BaseSerieResponse (object)
+
++ data (BaseSerie) - contiene un objeto Serie
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseSerieArrayResponse (object)
+
++ data (BaseSerieArray) - contiene un array de objetos Serie
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseSerieArray (object)
+
++ series (array[BaseSerie]) - series
+
+## BaseSerie (object)
++ id (number, required) - id
++ code (string, required) - código que se introducirá en el campo serie de la factura
++ name (string, optional) - nombre
++ prefix (string, optional) - prefijo (puedes introducir los cuatro o dos dígitos del año, respectivamente, escribiendo las variables #AAAA# o #AA#)
++ suffix (string, required) - sufijo (pueden utilizarse las mismas variables que en el caso anterior)
++ fill_left (number, required) - longitud del número de factura
++ numbering (boolean, required) - determina si habrá numeración automática o no
++ default_series (boolean, required) -  serie por defecto
++ reboot_year (string, required) - reiniciar automáticamente con el cambio de año
++ migrated (string, optional) - migrated
++ next_number (string, required) - siguiente número
