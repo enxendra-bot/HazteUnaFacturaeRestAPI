@@ -10,6 +10,7 @@ Esta documentación detalla las diferentes funciones que ofrece el JSON RESTful 
 ## Autorización
 
 Todas las peticiones al API requieren autorización. Dicha autenticación se realiza por medio de una cabecera HTTP llamada `Authorization` que tendrá el valor `Basic API_KEY` (tendrás que sustituir API_KEY por el valor real de tu clave).
+Adicionalmente se podrá facilitar un usuario y contraseña a un servicio de login, lo que permitirá recuperar un USER TOKEN, necesario para la realización de ciertas operaciones.
 
 ## Formatos
 
@@ -98,6 +99,25 @@ Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 2
 
 
 # Group Servicios
+
+## User/Pass Authentication [/login]
+
+Este servicio permite recuperar el User Token de un determinado usuario, un identificador único que permitirá acceder a ciertas operaciones sólo autorizadas a usuarios con determinados roles.
+
+###  Login [GET /login?user_name=username&pass=pass]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+        { "data": {
+        "user_name": "peter32",
+        "user_token": "8d1c5f-847f-43ac-ac10-2603586ec3"},
+        "error_code": "",
+        "error_message": ""}
 
 ## Master tables [/tables]
 
