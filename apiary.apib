@@ -94,6 +94,7 @@ Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 2
 | INVALID_DRAFT_STATE | 430
 | MANDATORY_PASSWORD | 440
 | EXISTING_USER | 450
+| INVALID_SERIES_ID | 460
  
  Estos códigos de error van acompañados de un mensaje que explica más en detalle cada caso concreto.
 
@@ -1596,6 +1597,7 @@ Recupera un fichero adjunto.
 ## DraftUpdatable (object)
 + number (string, required) - número de factura
 + series (string, optional) - número de serie
++ series_id (number, optional) - id de la numeración/series a aplicar
 + date (string, required) - fecha de factura
 + comments (string, optional) - observaciones
 + payments (array[BasePayment]) - vencimientos
