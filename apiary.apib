@@ -10,7 +10,7 @@ Esta documentación detalla las diferentes funciones que ofrece el JSON RESTful 
 ## Autorización
 
 Todas las peticiones al API requieren autorización. Dicha autenticación se realiza por medio de una cabecera HTTP llamada `Authorization` que tendrá el valor `Basic API_KEY` (tendrás que sustituir API_KEY por el valor real de tu clave).
-Adicionalmente se podrá facilitar un usuario y contraseña a un servicio de login, lo que permitirá recuperar un USER TOKEN, necesario para la realización de ciertas operaciones.
+Adicionalmente se podrá facilitar un usuario y contraseña a un servicio de login, lo que permitirá recuperar un USER_TOKEN, necesario para la realización de ciertas operaciones.
 
 ## Formatos
 
@@ -104,7 +104,8 @@ Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 2
 
 ## User/Pass Authentication [/login]
 
-Este servicio permite recuperar el User Token de un determinado usuario, un identificador único que permitirá acceder a ciertas operaciones sólo autorizadas a usuarios con determinados roles.
+Este servicio permite recuperar el USER_TOKEN de un determinado usuario, un identificador único que permitirá acceder a ciertas operaciones sólo autorizadas a usuarios con determinados roles.
+Este USER_TOKEN deberá utilizarse en el resto de servicios como parte de la cabecera.
 
 ###  Login [GET /login?user_name=username&pass=pass]
 
@@ -131,6 +132,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
  
@@ -153,6 +155,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -177,6 +180,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
  
@@ -199,6 +203,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -222,6 +227,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -255,6 +261,7 @@ Recupera la empresa asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseOrganizationResponse)
@@ -267,6 +274,7 @@ Recupera el listado de empresas existentes en el sistema.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseOrganizationArrayResponse)
@@ -279,6 +287,7 @@ Registra una nueva empresa en el sistema
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (Organization)
 
@@ -302,6 +311,7 @@ Actualiza una empresa existente en el sistema
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (Organization)
 
@@ -322,6 +332,7 @@ Elimina la empresa asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
   
@@ -346,6 +357,7 @@ Recupera la configuración de la empresa asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (OrganizationConfigurationResponse)
@@ -359,6 +371,7 @@ Actualiza la configuración por defecto para la empresa especificada
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (Organization Configuration)
 
@@ -387,6 +400,7 @@ Recupera la serie asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseSerieResponse)
@@ -399,6 +413,7 @@ Recupera el listado de series configuradas para la applicación que hace la soli
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseSerieArrayResponse)
@@ -411,6 +426,7 @@ Registra una nueva serie en el sistema para la aplicación que hace la solicitud
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseSerie)
 
@@ -434,6 +450,7 @@ Actualiza una serie existente en el sistema
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseSerie)
 
@@ -454,6 +471,7 @@ Elimina la serie asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
   
@@ -479,6 +497,7 @@ Recupera el usuario asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseUserResponse)
@@ -491,6 +510,7 @@ Recupera el listado de usuarios configurados para la applicación que hace la so
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseUserArrayResponse)
@@ -503,6 +523,7 @@ Registra un nuevo usuario.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseUser)
 
@@ -526,6 +547,7 @@ Actualiza un usuario existente en el sistema
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseUser)
 
@@ -546,6 +568,7 @@ Elimina el usuario asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
   
@@ -571,6 +594,7 @@ Recupera el cliente asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseCustomerResponse)
@@ -592,6 +616,7 @@ Recupera los clientes de la empresa.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
  
 + Response 200 (application/json)
 
@@ -613,6 +638,7 @@ Exporta los resultados de una búsqueda de clientes. Los formatos de exportació
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
  
 + Response 200 (application/json)
     + Attributes
@@ -631,6 +657,7 @@ Recupera una lista con un número limitado de clientes 'top' ordenados por un de
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
  
 + Response 200 (application/json)
 
@@ -648,6 +675,7 @@ Registra un nuevo cliente asociado a la empresa
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (Customer)
 
@@ -674,6 +702,7 @@ Actualiza un cliente
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (Customer)
 
@@ -693,6 +722,7 @@ Elimina el cliente asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -716,6 +746,7 @@ Recupera la configuración del cliente asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (CustomerConfigurationResponse)
@@ -732,6 +763,7 @@ Actualiza la configuración para el cliente especificado
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (CustomerConfiguration)
 
@@ -759,6 +791,7 @@ Recupera el borrador asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseDraftResponse)
@@ -774,6 +807,7 @@ Recupera las facturas en borrador de la empresa.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
    
@@ -791,6 +825,7 @@ Para introducir el resto de datos de la factura puede utilizarse el método PUT 
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes
         + cusId (number) - identificador del cliente al que se emitiría la factura
@@ -817,6 +852,7 @@ Actualiza un borrador de factura
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (DraftUpdatable)
 
@@ -834,6 +870,7 @@ Elimina el borrador de factura asociado al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
         
@@ -852,6 +889,7 @@ Envía un borrador de factura. El borrador (Draft) desaparece y da lugar a una f
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseInvoiceResponse)
@@ -868,6 +906,7 @@ Previsualiza en formato PDF el borrador de una factura.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes
@@ -885,6 +924,7 @@ Valida si el borrador dispone de toda la información necesaria para poder envia
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -919,6 +959,7 @@ Recupera un array con los identificadores de los ficheros adjuntos.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (AttachmentsArrayResponse)
@@ -936,6 +977,7 @@ Recupera un fichero adjunto.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (AttachmentResponse)
@@ -952,6 +994,7 @@ Permite subir un fichero adjunto a una factura en borrador.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (AttachmentToUpload)
 
@@ -973,6 +1016,7 @@ Permite eliminar un fichero adjunto de una factura en borrador.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
 
 + Response 200 (application/json)
@@ -999,6 +1043,7 @@ Crea una nueva línea dentro de un borrador de factura.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseItem)
 
@@ -1017,6 +1062,7 @@ Recupera las líneas de una factura en borrador.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
  + Attributes (BaseItemArrayResponse)
@@ -1033,6 +1079,7 @@ Recupera la información de una línea de un borrador
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
 + Response 200 (application/json)
     + Attributes (BaseItemResponse)
@@ -1049,6 +1096,7 @@ Actualiza la línea especificada de un borrador
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes (BaseItem)
 
@@ -1071,6 +1119,7 @@ Elimina una línea de un borrador de factura.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
  
@@ -1098,6 +1147,7 @@ Recupera la factura asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (BaseInvoiceResponse)
@@ -1127,6 +1177,7 @@ Recupera las facturas emitidas por la empresa.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -1156,6 +1207,7 @@ Exporta los resultados de una búsqueda de facturas. Los formatos de exportació
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes
@@ -1173,6 +1225,7 @@ Actualiza el estado de una factura
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes
         + state (string) - nuevo estado de la factura
@@ -1194,6 +1247,7 @@ Elimina le factura asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -1212,6 +1266,7 @@ Recupera el fichero original de la factura asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes
@@ -1228,6 +1283,7 @@ Recupera la vista en PDF de la factura asociada al ID especificado.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes
@@ -1244,6 +1300,7 @@ Marca una factura como aceptada por el receptor de la misma.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
 
@@ -1261,6 +1318,7 @@ Marca una factura como rechazada por el cliente.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
             
     + Attributes
         + reason (string) - motivos de rechazo
@@ -1286,6 +1344,7 @@ Recupera un array con los identificadores de los ficheros adjuntos.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (AttachmentsArrayResponse)
@@ -1303,6 +1362,7 @@ Recupera un fichero adjunto.
     + Headers
 
             Authorization: Basic API_KEY
+            user_token : USER_TOKEN
 
 + Response 200 (application/json)
     + Attributes (AttachmentResponse)
