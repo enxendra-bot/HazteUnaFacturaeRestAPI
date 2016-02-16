@@ -150,6 +150,30 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
         "error_message": ""}
 
 
+### Listar Roles [GET /tables/roles]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+ 
+        { "data":
+        {
+            "roles":
+            {
+               "Firma de documentos": "SIGN",
+                "Dos acciones": "ACTIONS",
+                "Admin Gestoría": "MANAGER",
+            "Proveedor": "SUPPLIER"
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
+
 ### Listar Tipos de Impuestos [GET /tables/taxes]
 
 + Request (application/json)
