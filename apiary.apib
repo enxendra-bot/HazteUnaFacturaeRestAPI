@@ -1432,6 +1432,136 @@ Recupera un fichero adjunto.
 + Response 200 (application/json)
     + Attributes (AttachmentResponse)
 
+### Estadísticas [GET /organizations/{orgId}/invoices/statistics?num_months]
+
+Recupera un array con los identificadores de los ficheros adjuntos.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + num_months (number) - número de meses de los que se desea extraer estadísticas
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+    + Attributes (InvoiceStatisticArrayResponse)
+    
+### Total facturado [GET /organizations/{orgId}/invoices/total_invoiced{?dateFrom,dateTo}]
+
+Recupera el importe total facturado.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + dateFrom (date) - fecha desde
+    + dateTo (date) - fecha hasta
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        {"data": {
+        "total": 1061652.6400000001
+        },
+        "error_code": "",
+        "error_message": ""
+        }
+        
+### Total pendiente [GET /organizations/{orgId}/invoices/total_expected{?dateFrom,dateTo}]
+
+Recupera el importe total pendiente de pago
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + dateFrom (date) - fecha desde
+    + dateTo (date) - fecha hasta
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        {"data": {
+        "total": 1061652.6400000001
+        },
+        "error_code": "",
+        "error_message": ""
+        }
+        
+### Total pagado [GET /organizations/{orgId}/invoices/total_paid{?dateFrom,dateTo}]
+
+Recupera el importe total pagado
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + dateFrom (date) - fecha desde
+    + dateTo (date) - fecha hasta
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        {"data": {
+        "total": 1061652.6400000001
+        },
+        "error_code": "",
+        "error_message": ""
+        }
+        
+### Total impagado [GET /organizations/{orgId}/invoices/total_unpaid{?dateFrom,dateTo}]
+
+Recupera el importe total impagado
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + dateFrom (date) - fecha desde
+    + dateTo (date) - fecha hasta
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        {"data": {
+        "total": 1061652.6400000001
+        },
+        "error_code": "",
+        "error_message": ""
+        }
+        
+### Total fallido [GET /organizations/{orgId}/invoices/total_faulty{?dateFrom,dateTo}]
+
+Recupera el importe total de facturas fallidas
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + dateFrom (date) - fecha desde
+    + dateTo (date) - fecha hasta
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        {"data": {
+        "total": 1061652.6400000001
+        },
+        "error_code": "",
+        "error_message": ""
+        }
 
 
 # Data Structures
@@ -1800,3 +1930,19 @@ Recupera un fichero adjunto.
 + surname (number, optional) - apellido
 + email (string, optional) - email
 + roles (array[string]) - roles
+
+## InvoiceStatisticArrayResponse (object)
+
++ data (InvoiceStatisticArray) - contiene un array de objetos InvoiceStatistic
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## InvoiceStatisticArray (object)
+
++ invoices (array[InvoiceStatistic]) - estadísticas
+
+## InvoiceStatistic (object)
++ month (string) - mes
++ total_invoiced (number) - total facturado
++ total_paid (number) - total pagado
++ total_unpaid (number) - total impagado
