@@ -97,6 +97,7 @@ Adicionalmente, en el cuerpo de la respuesta, cuando los códigos no son 200 o 2
 | INVALID_SERIES_ID | 460
 | BAD_PERMISSIONS | 470
 | INVALID_ROLE_CODE | 480
+| INVALID_ACTIVITY_ID | 490
  
  Estos códigos de error van acompañados de un mensaje que explica más en detalle cada caso concreto.
 
@@ -352,6 +353,44 @@ Actualiza una empresa existente en el sistema
 Elimina la empresa asociada al ID especificado.
 + Parameters
     + id (number) - identificador interno de la empresa
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+  
+        {
+        "error_code": "",
+        "error_message": ""}
+        
+### Actividad reciente [GET  /organizations/{orgId}/activity?num_results]
+
+Recupera la actividad reciente generada por la empresa.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + num_results (number, optional) - cantidad de elementos a mostrar, si no informa se retornan 15
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+    + Attributes (BaseActivityArrayResponse)
+    
+### Eliminar actividad reciente [DELETE  /organizations/{orgId}/activity/{id}]
+
+Elimina (marca como leída) una actividad.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador de la actividad
 
 + Request (application/json)
     + Headers
@@ -1573,6 +1612,7 @@ Recupera un fichero adjunto.
 + charges (array[BaseCharge], optional) - cargos
 
 ## InvoiceHistory
++ id (number) - identificador interno de la historia
 + date (string, required) - fecha en que se produjo el evento
 + action (string, required) - acción realizada sobre la factura
 + initial_state (string, required) - estado inicial de la factura, antes de la acción
@@ -1614,6 +1654,17 @@ Recupera un fichero adjunto.
 ## BaseInvoiceArray (object)
 
 + invoices (array[BaseInvoice]) - facturas
+
+## BaseActivityArrayResponse (object)
+
++ data (BaseActivityArray) - contiene un array de objetos InvoiceHistory
++ error_message (string) - mensaje de error
++ error_code (number) - codigo de error
+
+## BaseActivityArray (object)
+
++ activity (array[InvoiceHistory]) - actividad reciente
+
 
 ## BaseInvoice (object)
 + number (string, required) - número de factura
