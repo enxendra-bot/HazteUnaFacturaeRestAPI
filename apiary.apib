@@ -664,14 +664,15 @@ Recupera el cliente asociado al ID especificado.
 + Response 200 (application/json)
     + Attributes (BaseCustomerResponse)
 
-### Listar clientes [GET /organizations/{orgId}/customers/{?customer_name,customer_tax_number,sort_by,order,page,page_size}]
+### Listar clientes [GET /organizations/{orgId}/customers/{?customer_name,customer_tax_number,quick_search,sort_by,order,page,page_size}]
 
 Recupera los clientes de la empresa.
 
 + Parameters
     + orgId (number) - identificador interno de la empresa
     + customer_name (string, optional) - nombre de cliente
-    + customer_tax_number (string, optional) - nif de clienteados
+    + customer_tax_number (string, optional) - nif de cliente
+    + quick_search (string, optional) - término para búsqueda rápida en multiples campos: nombre, apellido, nif, email, dirección y provincia
     + sort_by (array[string], optional) - array de campos de ordenación
     + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
     + page (number, optional) - número de página
@@ -1217,7 +1218,7 @@ Recupera la factura asociada al ID especificado.
 + Response 200 (application/json)
     + Attributes (BaseInvoiceResponse)
 
-### Listar facturas [GET  /organizations/{orgId}/invoices/{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,sort_by,order,page,page_size}]
+### Listar facturas [GET  /organizations/{orgId}/invoices/{?invoice_number,series,date_from,date_to,customer_id,customer_name,customer_tax_number,item_description,payment_date,status,quick_search,sort_by,order,page,page_size}]
 
 Recupera las facturas emitidas por la empresa.
 
@@ -1233,6 +1234,7 @@ Recupera las facturas emitidas por la empresa.
     + item_description (string, optional) - descripción de línea
     + payment_date (string, optional) - fecha de pago
     + status (array[string], optional) - array de estados
+    + quick_search (string, optional) - término de búsqueda rápida para múltiples campos: número, serie, cif, concepto
     + sort_by (array[string], optional) - array de campos de ordenación
     + order (string, optional) - ordenación ascendente (ASC) o descendente (DESC)
     + page (number, optional) - número de página
@@ -1392,45 +1394,6 @@ Marca una factura como rechazada por el cliente.
 
         { "error_code": "",
         "error_message": ""}
-## Invoice Attachment [/organizations/{orgId}/invoices/{id}/attachments]
-
-Representa un fichero adjunto.
-
-+ Attributes (Attachment) 
-
-### Listar adjuntos [GET /organizations/{orgId}/invoices/{id}/attachments]
-
-Recupera un array con los identificadores de los ficheros adjuntos.
-+ Parameters
-    + orgId (number) - identificador interno de la empresa
-    + id (number) - identificador interno de la factura
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: Basic API_KEY
-            user_token : USER_TOKEN
-
-+ Response 200 (application/json)
-    + Attributes (AttachmentsArrayResponse)
-
-### Recuperar adjunto [GET /organizations/{orgId}/invoices/{invoiceId}/attachments/{id}]
-
-Recupera un fichero adjunto.
-
-+ Parameters
-    + orgId (number) - identificador interno de la empresa
-    + invoiceId (number) - identificador interno de la factura
-    + id (number) - identificador interno del adjunto
-
-+ Request (application/json)
-    + Headers
-
-            Authorization: Basic API_KEY
-            user_token : USER_TOKEN
-
-+ Response 200 (application/json)
-    + Attributes (AttachmentResponse)
 
 ### Estadísticas [GET /organizations/{orgId}/invoices/statistics?num_months]
 
@@ -1562,6 +1525,46 @@ Recupera el importe total de facturas fallidas
         "error_code": "",
         "error_message": ""
         }
+        
+## Invoice Attachment [/organizations/{orgId}/invoices/{id}/attachments]
+
+Representa un fichero adjunto.
+
++ Attributes (Attachment) 
+
+### Listar adjuntos [GET /organizations/{orgId}/invoices/{id}/attachments]
+
+Recupera un array con los identificadores de los ficheros adjuntos.
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+    + Attributes (AttachmentsArrayResponse)
+
+### Recuperar adjunto [GET /organizations/{orgId}/invoices/{invoiceId}/attachments/{id}]
+
+Recupera un fichero adjunto.
+
++ Parameters
+    + orgId (number) - identificador interno de la empresa
+    + invoiceId (number) - identificador interno de la factura
+    + id (number) - identificador interno del adjunto
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+    + Attributes (AttachmentResponse)
 
 
 # Data Structures
