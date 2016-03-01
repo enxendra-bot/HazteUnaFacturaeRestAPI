@@ -272,6 +272,29 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
         "error_code": "",
         "error_message": ""}
 
+### Listar Formatos de factura [GET /tables/invoiceformats]
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+
++ Response 200 (application/json)
+
+        { "data":
+        {
+            "invoice_formats":
+            {
+                "PDF": "PDF firmado",
+                "PAPER": "Factura en papel",
+                "Facturae31": "Facturae v3.1",
+                "Facturae32": "Facturae v3.2"
+            }
+        },
+        "error_code": "",
+        "error_message": ""}
+
 ## Organization [/organizations]
 
 Representa una entidad fiscal, ya se trate de una persona jurídica (empresa) o física (autónomo).
@@ -1757,6 +1780,20 @@ Recupera un fichero adjunto.
 + browser (string, optional) - navegador desde el que se ejecuta la acción
 + user_agent (string, optional) - cabecera user-agent del dispositivo desde el que se ejecuta la acción
 
+## InvoiceActivity
++ id (number) - identificador interno de la historia
++ date (string, required) - fecha en que se produjo el evento
++ action (string, required) - acción realizada sobre la factura
++ initial_state (string, required) - estado inicial de la factura, antes de la acción
++ end_state (string, required) - estado final de la factura después de la acción
++ user (string, optional) - usuario, empresa o sistema autor de la acción
++ message (string, optional) - mensaje de rechazo, error o detalle de la acción realizada
++ ip (string, optional) - ip desde la que se ejecuta la acción
++ browser (string, optional) - navegador desde el que se ejecuta la acción
++ user_agent (string, optional) - cabecera user-agent del dispositivo desde el que se ejecuta la acción
++ invoice_id (number) - id de factura
++ invoice_number (string) - número de la factura
+
 ## BaseDraftResponse (object)
 
 + data (BaseInvoice) - contiene un objeto Draft
@@ -1797,7 +1834,7 @@ Recupera un fichero adjunto.
 
 ## BaseActivityArray (object)
 
-+ activity (array[InvoiceHistory]) - actividad reciente
++ activity (array[InvoiceActivity]) - actividad reciente
 
 
 ## BaseInvoice (object)
