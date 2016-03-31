@@ -1436,13 +1436,13 @@ Recupera un array con los identificadores de los ficheros adjuntos.
 + Response 200 (application/json)
     + Attributes (InvoiceStatisticArrayResponse)
     
-### Total facturado [GET /organizations/{orgId}/invoices/total_invoiced{?dateFrom,dateTo}]
+### Total facturado [GET /organizations/{orgId}/invoices/total_invoiced{?date_from,date_to}]
 
 Recupera el importe total facturado.
 + Parameters
     + orgId (number) - identificador interno de la empresa
-    + dateFrom (date) - fecha desde
-    + dateTo (date) - fecha hasta
+    + date_from (date) - fecha desde
+    + date_to (date) - fecha hasta
 
 + Request (application/json)
     + Headers
@@ -1459,13 +1459,13 @@ Recupera el importe total facturado.
         "error_message": ""
         }
         
-### Total pendiente [GET /organizations/{orgId}/invoices/total_expected{?dateFrom,dateTo}]
+### Total pendiente [GET /organizations/{orgId}/invoices/total_expected{?date_from,date_to}]
 
 Recupera el importe total pendiente de pago
 + Parameters
     + orgId (number) - identificador interno de la empresa
-    + dateFrom (date) - fecha desde
-    + dateTo (date) - fecha hasta
+    + date_from (date) - fecha desde
+    + date_to (date) - fecha hasta
 
 + Request (application/json)
     + Headers
@@ -1482,13 +1482,13 @@ Recupera el importe total pendiente de pago
         "error_message": ""
         }
         
-### Total pagado [GET /organizations/{orgId}/invoices/total_paid{?dateFrom,dateTo}]
+### Total pagado [GET /organizations/{orgId}/invoices/total_paid{?date_from,date_to}]
 
 Recupera el importe total pagado
 + Parameters
     + orgId (number) - identificador interno de la empresa
-    + dateFrom (date) - fecha desde
-    + dateTo (date) - fecha hasta
+    + date_from (date) - fecha desde
+    + date_to (date) - fecha hasta
 
 + Request (application/json)
     + Headers
@@ -1505,13 +1505,13 @@ Recupera el importe total pagado
         "error_message": ""
         }
         
-### Total impagado [GET /organizations/{orgId}/invoices/total_unpaid{?dateFrom,dateTo}]
+### Total impagado [GET /organizations/{orgId}/invoices/total_unpaid{?date_from,date_to}]
 
 Recupera el importe total impagado
 + Parameters
     + orgId (number) - identificador interno de la empresa
-    + dateFrom (date) - fecha desde
-    + dateTo (date) - fecha hasta
+    + date_from (date) - fecha desde
+    + date_to (date) - fecha hasta
 
 + Request (application/json)
     + Headers
@@ -1528,13 +1528,13 @@ Recupera el importe total impagado
         "error_message": ""
         }
         
-### Total fallido [GET /organizations/{orgId}/invoices/total_faulty{?dateFrom,dateTo}]
+### Total fallido [GET /organizations/{orgId}/invoices/total_faulty{?date_from,date_to}]
 
 Recupera el importe total de facturas fallidas
 + Parameters
     + orgId (number) - identificador interno de la empresa
-    + dateFrom (date) - fecha desde
-    + dateTo (date) - fecha hasta
+    + date_from (date) - fecha desde
+    + date_to (date) - fecha hasta
 
 + Request (application/json)
     + Headers
