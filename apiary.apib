@@ -1300,9 +1300,11 @@ Exporta los resultados de una búsqueda de facturas. Los formatos de exportació
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
-    + Attributes
-       + export (string) - fichero con el resultado de la exportación condificado en Base64
 
+        { "data": {"export":"23rjfsjfijgerkkdkfdkhfdk399reg9uq9u9uef9vs"},
+        "error_code": "","error_message": "" }
+        
+       
 ### Actualizar estado de factura [PUT /organizations/{orgId}/invoices/{id}]
 
 Actualiza el estado de una factura
