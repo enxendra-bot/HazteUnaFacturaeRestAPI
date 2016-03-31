@@ -1411,7 +1411,7 @@ Marca una factura como rechazada por el cliente.
             user_token : USER_TOKEN
             
     + Attributes
-        + reason (string) - motivos de rechazo
+        + reason (string, required) - motivos de rechazo
 
 + Response 200 (application/json)
 
@@ -1979,7 +1979,7 @@ Recupera un fichero adjunto.
 
 ## InvoiceStatisticArray (object)
 
-+ invoices (array[InvoiceStatistic]) - estadísticas
++ statistics (array[InvoiceStatistic]) - estadísticas
 
 ## InvoiceStatistic (object)
 + month (string) - mes
