@@ -472,17 +472,18 @@ Actualiza la configuración por defecto para la empresa especificada
         
   
   
-## Series [/organizations/{id}/series]
+## Series [/organizations/{orgId}/series]
 
  Permite configurar las series y numeración de las facturas
 
 + Attributes (BaseSerie)
 
-### Recuperar serie [GET /series/{id}]
+### Recuperar serie [GET /organizations/{orgId}/series/{id}]
 
 Recupera la serie asociada al ID especificado.
 + Parameters
     + id (number) - identificador interno de la serie
+    + orgId (number) - identificador interno de la organización
 
 + Request (application/json)
     + Headers
@@ -497,6 +498,9 @@ Recupera la serie asociada al ID especificado.
 
 Recupera el listado de series configuradas para la applicación que hace la solicitud.
 
++ Parameters
+    + orgId (number) - identificador interno de la organización
+    
 + Request (application/json)
     + Headers
 
@@ -528,11 +532,12 @@ Registra una nueva serie en el sistema para la aplicación que hace la solicitud
         "error_message": ""}
 
 
-### Actualizar serie [PUT /series/{id}]
+### Actualizar serie [PUT /organizations/{orgId}/series/{id}]
 
 Actualiza una serie existente en el sistema
 + Parameters
     + id (number) - identificador interno de la serie
+    + orgId (number) - identificador interno de la organización
 
 + Request (application/json)
     + Headers
@@ -549,11 +554,12 @@ Actualiza una serie existente en el sistema
         "error_message": ""}
 
 
-### Eliminar serie [DELETE /series/{id}]
+### Eliminar serie [DELETE organization/{orgId}/series/{id}]
 
 Elimina la serie asociada al ID especificado.
 + Parameters
     + id (number) - identificador interno de la serie
+    + orgId (number) - identificador interno de la organización
 
 + Request (application/json)
     + Headers
