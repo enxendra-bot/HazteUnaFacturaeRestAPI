@@ -1613,6 +1613,8 @@ Representa una factura recibida.
 Recupera la factura asociada al ID especificado.
 + Parameters
     + id (number) - identificador interno de la factura
+    + orgId (number) - identificador interno de la organización
+    
 
 + Request (application/json)
     + Headers
@@ -1627,6 +1629,8 @@ Recupera la factura asociada al ID especificado.
 Recupera las facturas recibidas por la empresa.
 
 + Parameters
+
+    + orgId (number) - identificador interno de la organización
     + invoice_number (string, optional) - número de factura
     + series (string, optional) - número de serie
     + date_from (string, optional ) - fecha de factura desde
@@ -1659,6 +1663,7 @@ Recupera las facturas recibidas por la empresa.
 Exporta los resultados de una búsqueda de facturas. Los formatos de exportación disponibles son: CSV, PDF, XLS, XLSX, DOCX, RTF, ODT, ODS.
 
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + invoice_number (string, optional) - número de factura
     + series (string, optional) - número de serie
     + date_from (string, optional ) - fecha de factura desde
@@ -1688,6 +1693,7 @@ Exporta los resultados de una búsqueda de facturas. Los formatos de exportació
 Actualiza el estado de una factura
 
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
@@ -1708,6 +1714,7 @@ Actualiza el estado de una factura
 
 Recupera el fichero original de la factura asociada al ID especificado.
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
@@ -1723,6 +1730,7 @@ Recupera el fichero original de la factura asociada al ID especificado.
 
 Recupera la vista en PDF de la factura asociada al ID especificado.
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
@@ -1738,6 +1746,7 @@ Recupera la vista en PDF de la factura asociada al ID especificado.
 
 Marca una factura como aceptada.
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
@@ -1754,6 +1763,7 @@ Marca una factura como aceptada.
 
 Marca una factura como rechazada.
 + Parameters
+    + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
