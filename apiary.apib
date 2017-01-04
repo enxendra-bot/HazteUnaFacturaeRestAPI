@@ -114,16 +114,21 @@ Este USER_TOKEN deberá utilizarse en el resto de servicios como parte de la cab
 
 + Request (application/json)
     + Headers
-
+    
             Authorization: Basic API_KEY
 
 + Response 200 (application/json)
 
-        { "data": {
-        "user_name": "peter32",
-        "user_token": "8d1c5f-847f-43ac-ac10-2603586ec3"},
+        { 
+        "data": 
+            {
+            "user_name": "peter32",
+            "user_token": "8d1c5f-847f-43ac-ac10-2603586ec3"
+            },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
+
 
 ## Master tables [/tables]
 
@@ -138,7 +143,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
- 
+
         { "data":
         {
             "payment_means":
@@ -149,7 +154,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Listar Roles [GET /tables/roles]
@@ -161,7 +167,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
- 
+
         { "data":
         {
             "roles":
@@ -173,7 +179,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Listar Tipos de Impuestos [GET /tables/taxes]
@@ -198,7 +205,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Listar Unidades de medida [GET /tables/unitsofmeasure]
@@ -210,7 +218,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
- 
+
         { "data":
         {
             "units_of_measure":
@@ -222,7 +230,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Listar Estados de factura [GET /tables/invoicestates]
 
@@ -246,7 +255,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Listar Canales de envío [GET /tables/deliverymethods]
 
@@ -270,7 +280,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Listar Formatos de factura [GET /tables/invoiceformats]
 
@@ -281,7 +292,7 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
-
+ 
         { "data":
         {
             "invoice_formats":
@@ -293,7 +304,8 @@ Estos servicios permiten recuperar las tablas maestras de la aplicación.
             }
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ## Organization [/organizations]
 
@@ -304,6 +316,7 @@ Representa una entidad fiscal, ya se trate de una persona jurídica (empresa) o 
 ### Recuperar empresa [GET /organizations/{id}]
 
 Recupera la empresa asociada al ID especificado.
+
 + Parameters
     + id (number) - identificador interno de la empresa
 
@@ -348,7 +361,8 @@ Registra una nueva empresa en el sistema
         "id": "356"
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Actualizar empresa [PUT /organizations/{id}]
@@ -369,7 +383,8 @@ Actualiza una empresa existente en el sistema
 
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Eliminar empresa [DELETE /organizations/{id}]
@@ -385,12 +400,13 @@ Elimina la empresa asociada al ID especificado.
             user_token : USER_TOKEN
 
 + Response 200 (application/json)
-  
+
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
         
-### Actividad reciente [GET  /organizations/{orgId}/activity?num_results]
+### Actividad reciente [GET  /organizations/{orgId}/activity{?num_results}]
 
 Recupera la actividad reciente generada por la empresa.
 
@@ -403,6 +419,7 @@ Recupera la actividad reciente generada por la empresa.
 
             Authorization: Basic API_KEY
             user_token : USER_TOKEN
+
 
 + Response 200 (application/json)
 
@@ -426,7 +443,8 @@ Elimina (marca como leída) una actividad.
   
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ## Organization Configuration [/organizations/{id}/configuration]
@@ -467,7 +485,8 @@ Actualiza la configuración por defecto para la empresa especificada
    
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
         
         
   
@@ -524,17 +543,19 @@ Registra una nueva serie en el sistema para la aplicación que hace la solicitud
 
 + Response 201 (application/json)
 
-        {"data":
+        {"data":"error_message": ""}
         {
         "id": "356"
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Actualizar serie [PUT /organizations/{orgId}/series/{id}]
 
 Actualiza una serie existente en el sistema
+
 + Parameters
     + id (number) - identificador interno de la serie
     + orgId (number) - identificador interno de la organización
@@ -548,13 +569,14 @@ Actualiza una serie existente en el sistema
     + Attributes (BaseSerie)
 
 + Response 200 (application/json)
-C
+
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
-### Eliminar serie [DELETE organization/{orgId}/series/{id}]
+### Eliminar serie [DELETE /organization/{orgId}/series/{id}]
 
 Elimina la serie asociada al ID especificado.
 
@@ -572,7 +594,8 @@ Elimina la serie asociada al ID especificado.
   
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
       
       
@@ -629,7 +652,8 @@ Registra un nuevo usuario.
         "id": "356"
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Actualizar usuario [PUT /users/{id}]
@@ -650,7 +674,8 @@ Actualiza un usuario existente en el sistema
 
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Eliminar usuario [DELETE /users/{id}]
@@ -669,7 +694,8 @@ Elimina el usuario asociado al ID especificado.
   
         {
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
       
 ## Customer [/organizations/{orgId}/customers]
@@ -782,7 +808,8 @@ Registra un nuevo cliente asociado a la empresa
             "id": "665"
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 
@@ -805,7 +832,8 @@ Actualiza un cliente
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Eliminar cliente [DELETE /organizations/{orgId}/customers/{id}]
 
@@ -823,7 +851,8 @@ Elimina el cliente asociado al ID especificado.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ## Customer Configuration [/organizations/{orgId}/customers/{cusId}/configuration]
 
@@ -866,7 +895,8 @@ Actualiza la configuración para el cliente especificado
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ## Draft [/organizations/{orgId}/drafts]
@@ -933,7 +963,8 @@ Para introducir el resto de datos de la factura puede utilizarse el método PUT 
             "id": "665"
         },
         "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Actualizar borrador [PUT /organizations/{orgId}/drafts/{id}]
@@ -971,7 +1002,8 @@ Elimina el borrador de factura asociado al ID especificado.
 + Response 200 (application/json)
         
         {"error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Enviar borrador [GET /organizations/{orgId}/drafts/{id}/send]
 
@@ -1033,7 +1065,8 @@ Valida si el borrador dispone de toda la información necesaria para poder envia
             "is_valid": "false"
         },
         "error_code": "",
-        "error_message": "" }
+        "error_message": "" 
+        }
 
 
 
@@ -1097,7 +1130,8 @@ Permite subir un fichero adjunto a una factura en borrador.
 + Response 200 (application/json)
     
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Eliminar adjunto [DELETE /organizations/{orgId}/drafts/{draftId}/attachments/{id}]
@@ -1118,7 +1152,8 @@ Permite eliminar un fichero adjunto de una factura en borrador.
 + Response 200 (application/json)
     
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ## Draft Item [/organizations/{orgId}/drafts/{draftId}/items]
@@ -1199,7 +1234,8 @@ Actualiza la línea especificada de un borrador
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 
@@ -1220,7 +1256,8 @@ Elimina una línea de un borrador de factura.
 + Response 200 (application/json)
  
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ## Sent Invoice [/organizations/{orgId}/invoices]
@@ -1258,8 +1295,6 @@ Recupera las facturas emitidas por la empresa.
     + series (string, optional) - número de serie
     + date_from (string, optional ) - fecha de factura desde
     + date_to (string, optional) - fecha de factura hasta
-    + payment_date_from (string, optional ) - fecha de pago desde
-    + payment_date_to (string, optional) - fecha de pago hasta
     + customer_id (number, optional) - identificador de cliente
     + customer_name (string, optional) - nombre de cliente
     + customer_tax_number (string, optional) - nif de cliente
@@ -1311,7 +1346,8 @@ Exporta los resultados de una búsqueda de facturas emitidas. Los formatos de ex
 + Response 200 (application/json)
 
         { "data": {"export":"23rjfsjfijgerkkdkfdkhfdk399reg9uq9u9uef9vs"},
-        "error_code": "","error_message": "" }
+        "error_code": "","error_message": "" 
+        }
         
        
 ### Actualizar estado de factura [PUT /organizations/{orgId}/invoices/{id}]
@@ -1331,10 +1367,11 @@ Actualiza el estado de una factura
     + Attributes
         + state (string) - nuevo estado de la factura
 
-+ Response 200 (application/json)
++ Response 201 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Eliminar factura [DELETE /organizations/{orgId}/invoices/{id}]
@@ -1353,7 +1390,8 @@ Elimina le factura asociada al ID especificado.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Recuperar original [GET /organizations/{orgId}/invoices/{id}/original]
@@ -1406,7 +1444,8 @@ Marca una factura como aceptada por el receptor de la misma.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Rechazar factura [PUT /organizations/{orgId}/invoices/{id}/reject]
 
@@ -1427,9 +1466,10 @@ Marca una factura como rechazada por el cliente.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
-### Estadísticas [GET /organizations/{orgId}/invoices/statistics?num_months]
+### Estadísticas [GET /organizations/{orgId}/invoices/statistics{?num_months}]
 
 Recupera un array con los identificadores de los ficheros adjuntos.
 + Parameters
@@ -1635,8 +1675,6 @@ Recupera las facturas recibidas por la empresa.
     + orgId (number) - identificador interno de la organización
     + invoice_number (string, optional) - número de factura
     + series (string, optional) - número de serie
-    + payment_date_from (string, optional ) - fecha de pago desde
-    + payment_date_to (string, optional) - fecha de pago hasta
     + date_from (string, optional ) - fecha de factura desde
     + date_to (string, optional) - fecha de factura hasta
     + customer_name (string, optional) - nombre de cliente
@@ -1711,12 +1749,14 @@ Actualiza el estado de una factura
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 
 ### Recuperar original [GET /organizations/{orgId}/received_invoices/{id}/original]
 
 Recupera el fichero original de la factura asociada al ID especificado.
+
 + Parameters
     + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
@@ -1727,12 +1767,14 @@ Recupera el fichero original de la factura asociada al ID especificado.
             Authorization: Basic API_KEY
 
 + Response 200 (application/json)
+
     + Attributes
         + original (string) - original de la factura codificado en Base64
         
-### Recuperar vista PDF [GET /received_invoices/{id}/pdf]
+### Recuperar vista PDF [GET /organizations/{orgId}/received_invoices/{id}/pdf]
 
 Recupera la vista en PDF de la factura asociada al ID especificado.
+
 + Parameters
     + orgId (number) - identificador interno de la organización
     + id (number) - identificador interno de la factura
@@ -1761,7 +1803,8 @@ Marca una factura como aceptada.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
 ### Rechazar factura [PUT /organizations/{orgId}/received_invoices/{id}/reject]
 
@@ -1771,6 +1814,7 @@ Marca una factura como rechazada.
     + id (number) - identificador interno de la factura
 
 + Request (application/json)
+
     + Headers
 
             Authorization: Basic API_KEY
@@ -1781,9 +1825,46 @@ Marca una factura como rechazada.
 + Response 200 (application/json)
 
         { "error_code": "",
-        "error_message": ""}
+        "error_message": ""
+        }
 
+## Invoices [/invoices]
 
+API para el envío y consulta de Facturas.
+    
+### Enviar factura [POST /invoices/]
+
+Envía una factura a través de la plataforma.
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic API_KEY
+            user_token : USER_TOKEN
+            
+    + Attributes (InvoicePayload)
+
++ Response 201 (application/json)
+
+    + Attributes (BaseInvoiceResponse)
+
+### Recuperar factura [GET /invoices/{id}]
+
+Recupera la factura asociada al ID especificado.
++ Parameters
+    + id (number) - identificador interno de la factura
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic API_KEY
+
++ Response 200 (application/json)
+
+    + Attributes 
+        + detail (BaseInvoiceResponse)
+        
 
 # Data Structures
 
@@ -1791,14 +1872,14 @@ Marca una factura como rechazada.
 
 + data (Attachment) - contiene un objeto attachment
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 
 ## AttachmentsArrayResponse (object)
 
 + data (AttachmentsArray) - contiene un array de objetos Attachment (sin content)
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## AttachmentsArray (object)
 
@@ -1808,7 +1889,7 @@ Marca una factura como rechazada.
 
 + data (OrganizationConfiguration) - configuración base
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## OrganizationConfiguration (object)
 + currency (string, required) - código alpha de moneda
@@ -1827,7 +1908,7 @@ Marca una factura como rechazada.
 
 + data (CustomerConfiguration) - configuración base
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## CustomerConfiguration (object)
 + currency (string, required) - código alpha de moneda
@@ -1843,13 +1924,13 @@ Marca una factura como rechazada.
 
 + data (BaseOrganization) - contiene un objeto Organization
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseOrganizationArrayResponse (object)
 
 + data (BaseOrganizationArray) - contiene un array de objetos Organization
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseOrganizationArray (object)
 
@@ -1891,13 +1972,13 @@ Marca una factura como rechazada.
 
 + data (BaseCustomer) - contiene un objeto Customer
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseCustomerArrayResponse (object)
 
 + data (BaseCustomerArray) - contiene un array de objetos Customer
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseCustomerArray (object)
 
@@ -1929,13 +2010,13 @@ Marca una factura como rechazada.
 
 + data (BaseItem) - contiene un objeto Draft Item
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseItemArrayResponse (object)
 
 + data (BaseItemArray) - contiene un array de objetos Draft Item
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseItemArray (object)
 
@@ -1945,7 +2026,7 @@ Marca una factura como rechazada.
 + order (number, required) - ordinal superior a 0 para identificar el item dentro de la factura (1,2,3...)
 + description (string, required) - concepto a facturar
 + quantity (number, required) - cantidad
-+ unit_of_measure (string, optional) - unidad de medida
++ unit_of_measure (string, required) - unidad de medida
 + price (number, required) - precio unitario
 + total_cost (number, optional) - importe bruto sin impuestos `dato calculado por el sistema`
 + gross_amount (number, optional) - importe bruto sin impuestos después de aplicar cargos y descuentos `dato calculado por el sistema`
@@ -1993,29 +2074,35 @@ Marca una factura como rechazada.
 
 + data (BaseInvoice) - contiene un objeto Draft
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseDraftArrayResponse (object)
 
 + data (BaseDraftArray) - contiene un array de objetos Draft
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseDraftArray (object)
 
 + drafts (array[BaseInvoice]) - borradores
 
+## InvoiceSentResponse (object)
+
++ id (string) - identificador de la factura enviada
++ error_message (string) - mensaje de error
++ error_code (string) - codigo de error
+
 ## BaseInvoiceResponse (object)
 
 + data (BaseInvoice) - contiene un objeto Invoice
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseInvoiceArrayResponse (object)
 
 + data (BaseInvoiceArray) - contiene un array de objetos Invoice
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseInvoiceArray (object)
 
@@ -2025,7 +2112,7 @@ Marca una factura como rechazada.
 
 + data (BaseActivityArray) - contiene un array de objetos InvoiceHistory
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseActivityArray (object)
 
@@ -2120,18 +2207,19 @@ Marca una factura como rechazada.
 + corrective_end_date (string, optional) - fecha fin de factura rectificativa
 + corrective_reason_code (string, optional) - motivo de rectificación
 + corrective_reason_method (string, optional) - criterio de rectificación
++ series_id (number, optional) - id de la serie, cuando se utiliza gestión de series
 
 ## BaseSerieResponse (object)
 
 + data (BaseSerie) - contiene un objeto Serie
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseSerieArrayResponse (object)
 
 + data (BaseSerieArray) - contiene un array de objetos Serie
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseSerieArray (object)
 
@@ -2154,13 +2242,13 @@ Marca una factura como rechazada.
 
 + data (BaseUser) - contiene un objeto User
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseUserArrayResponse (object)
 
 + data (BaseUserArray) - contiene un array de objetos User
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## BaseUserArray (object)
 
@@ -2178,7 +2266,7 @@ Marca una factura como rechazada.
 
 + data (InvoiceStatisticArray) - contiene un array de objetos InvoiceStatistic
 + error_message (string) - mensaje de error
-+ error_code (number) - codigo de error
++ error_code (string) - codigo de error
 
 ## InvoiceStatisticArray (object)
 
@@ -2189,3 +2277,15 @@ Marca una factura como rechazada.
 + total_invoiced (number) - total facturado
 + total_paid (number) - total pagado
 + total_unpaid (number) - total impagado
+
+## InvoicePayload (object)
++ payloadType (string) - tipo de carga de los datos de la factura. "csv", "facturae", "json"
++ channel (string) - canal de envío
++ csv (string) - si payloadType=='csv', cadena en base64 con la factura en fomato csv
++ facturae (string) - si payloadType=='facturae', cadena en base64 con la factura en fomato Facturae
++ json (BaseInvoice) - si payloadType=='json'
+
+## Base64InvoicePayload (object)
++ format (string, required) "pdf" | "xml"
++ content (string, required) - el contenido del documento en base64
++ channel (string, required) - canal de envío de las facturas por defecto
